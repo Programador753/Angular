@@ -1,0 +1,29 @@
+<table>
+    <thead>
+        <tr>
+            <th [attr.colspan]="columnas">Director</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Nombre:</td>
+            <td>{{ nombre }} </td>
+        </tr>
+        <tr>
+            <td>Apellidos:</td>
+            <td>{{ apellidos }}</td>
+        </tr>
+        <tr *ngIf="visibles">
+            <td>Dirección:</td>
+            <td>{{ direccion }}</td>
+        </tr>
+        <tr *ngIf="visibles">
+            <td>Edad:</td>
+            <td>{{ edad }}</td>
+        </tr>
+    </tbody>
+</table>
+<br>
+<button (click)="alternarVisibilidad()">
+    {{ visibles ? 'Ocultar detalles' : 'Mostrar detalles' }}
+</button>

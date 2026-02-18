@@ -1,0 +1,76 @@
+<div class="pizarra-container">
+    <h3>Gestión de Calificaciones</h3>
+
+    <div class="formulario-pizarra">
+        <div class="fila">
+            <div class="campo">
+                <label>Convoc.:</label>
+                <input type="number" 
+                       [(ngModel)]="nuevaCalificacion.convocatoria" 
+                       (ngModelChange)="aplicarFiltros()"
+                       class="input-corto" 
+                       placeholder="Filtro">
+            </div>
+
+            <div class="campo expandir">
+                <label>Asignatura:</label>
+                <select [(ngModel)]="nuevaCalificacion.asignaturaID" 
+                        (ngModelChange)="aplicarFiltros()"
+                        class="input-full">
+                    <option [value]="0">-- Todas (Filtro) --</option>
+                    <option *ngFor="let asig of listaAsignaturas" [value]="asig.id">
+                        {{ asig.nomAsignatura }}
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <div class="fila">
+            <div class="campo expandir">
+                <label>Alumno:</label>
+                <select [(ngModel)]="nuevaCalificacion.alumnoID" class="input-full">
+                    <option [value]="0">-- Selecciona Alumno --</option>
+                    <option *ngFor="let alum of listaAlumnos" [value]="alum.id">
+                        {{ alum.nombre }}
+                    </option>
+                </select>
+            </div>
+
+            <div class="campo">
+                <label>Nota:</label>
+                <input type="number" [(ngModel)]="nuevaCalificacion.nota" class="input-corto">
+            </div>
+
+            <div class="campo-boton">
+                <button (click)="guardar()" class="btn-insercion">
+                    Inserción <i class="fa fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <hr class="separador">
+
+    <table class="tabla-resultados">
+        <thead>
+            <tr>
+                <th>Alumno</th>
+                <th>Asignatura</th>
+                <th>Convoc.</th> <th>Nota</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of calificacionesFiltradas">
+                <td>{{ item.alumno?.nombre || 'ID:' + item.alumnoID }}</td>
+                <td>{{ item.asignatura?.nomAsignatura || 'ID:' + item.asignaturaID }}</td>
+                <td style="text-align: center;">{{ item.convocatoria }}</td>
+                <td class="col-nota">{{ item.nota }}</td>
+            </tr>
+            <tr *ngIf="calificacionesFiltradas.length === 0">
+                <td colspan="4" class="sin-datos">
+                    No hay resultados con esos filtros
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

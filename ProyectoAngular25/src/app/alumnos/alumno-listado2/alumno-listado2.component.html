@@ -1,0 +1,53 @@
+<div class="container mt-5">
+    <h2>Listado de Alumnos</h2>
+    
+    <app-selector 
+        [options]="opcionesSelector" 
+        label="Filtrar por país:" 
+        [defaultOption]="opcionSeleccionada"
+        (selectedValueChange)="onFiltroChange($event)">
+    </app-selector>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Dirección</th>
+            <th>Fecha de Nacimiento</th>
+            <th>Sexo</th>
+            <th>Pais</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let alumno of alumnos">
+            <tr>
+                <td>{{ alumno.nombre | uppercase | alumnoTitulo:alumno.sexo}}</td>
+                <td>{{ alumno.foto}}</td>
+                <td>{{ alumno.fnac | date: 'dd/MM/yyyy' }}</td>
+                <td>{{ alumno.sexo }}</td>
+                <td>{{ getNombrePais(alumno.paisID ?? 0) }}</td>
+                <td>
+                    <app-boton 
+                        iconClasses="fa-solid fa-edit" 
+                        buttonClasses="btn-warning" 
+                        [routerLink]="['/alumno-insertar', alumno.id]">Editar
+                    </app-boton>
+                </td>
+                <td>
+                    <app-boton 
+                        iconClasses="fa-solid fa-trash" 
+                        buttonClasses="btn-danger" 
+                        (click)="eliminarAlumno(alumno.id)">Eliminar
+                    </app-boton>
+                </td>
+            </tr>
+        </ng-container>
+        
+        <tr *ngIf="!alumnos || alumnos.length == 0">
+            <td colspan="7" align="center">No hay alumnos disponibles</td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,103 @@
+.pizarra-container {
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fcfcfc;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+h3 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.fila {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    align-items: flex-end; /* Alinea los inputs con el botón abajo */
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+}
+
+.expandir {
+    flex-grow: 1; /* Hace que el select ocupe el espacio disponible */
+}
+
+label {
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+/* Inputs y Selects */
+input, select {
+    padding: 8px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.input-corto {
+    width: 80px;
+    text-align: center;
+}
+
+.input-full {
+    width: 100%;
+}
+
+/* Botón Inserción */
+.btn-insercion {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 9px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    height: 38px; /* Para igualar altura de inputs */
+}
+
+.btn-insercion:hover {
+    background-color: #0056b3;
+}
+
+.separador {
+    margin: 30px 0;
+    border: 0;
+    border-top: 1px solid #ddd;
+}
+
+/* Tabla */
+.tabla-resultados {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.tabla-resultados th {
+    background-color: #e9ecef;
+    padding: 10px;
+    text-align: left;
+    border-bottom: 2px solid #ccc;
+}
+
+.tabla-resultados td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.col-nota {
+    font-weight: bold;
+    color: #007bff;
+    width: 80px;
+    text-align: center;
+}

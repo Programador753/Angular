@@ -1,0 +1,11 @@
+<div>
+    <span>Muestra: </span>
+    <input type="radio" name="opciones" value="todos" [(ngModel)]="opcionElegida" (change)="cuandoCambiaOpcion()">
+    <label for="todos">Todos ({{todos}})</label>
+
+    <input type="radio" name="opciones" value="Hombre" [(ngModel)]="opcionElegida" (change)="cuandoCambiaOpcion()">
+    <label for="hombres">Hombres ({{hombres}})</label>
+
+    <input type="radio" name="opciones" value="Mujer" [(ngModel)]="opcionElegida" (change)="cuandoCambiaOpcion()">
+    <label for="mujeres">Mujeres ({{mujeres}})</label>
+</div>
