@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Pais } from './pais';
 
@@ -7,7 +7,8 @@ import { Pais } from './pais';
   providedIn: 'root'
 })
 export class PaisesService {
-  private readonly baseUrl = '/api/paises';
+  // CORRECCIÓN: URL completa al servidor
+  private readonly baseUrl = 'https://localhost:7195/api/Pais'; 
 
   constructor(private readonly http: HttpClient) {}
 
@@ -20,11 +21,13 @@ export class PaisesService {
   }
 
   createPais(pais: Pais): Observable<Pais> {
-    return this.http.post<Pais>(this.baseUrl, pais);
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<Pais>(this.baseUrl, pais, { headers });
   }
 
   updatePais(id: number, pais: Pais): Observable<Pais> {
-    return this.http.put<Pais>(`${this.baseUrl}/${id}`, pais);
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.put<Pais>(`${this.baseUrl}/${id}`, pais, { headers });
   }
 
   deletePais(id: number): Observable<void> {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Autor } from './autor';
 
@@ -7,7 +7,7 @@ import { Autor } from './autor';
   providedIn: 'root'
 })
 export class AutoresService {
-   private apiUrl = 'https://localhost:7244/api/autores';
+  private apiUrl = 'https://localhost:7195/api/Autor'; // Verifica si tu backend usa /autores o /autor
 
   constructor(private readonly http: HttpClient) {}
 
@@ -20,11 +20,13 @@ export class AutoresService {
   }
 
   createAutor(autor: Autor): Observable<Autor> {
-    return this.http.post<Autor>(this.apiUrl, autor);
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<Autor>(this.apiUrl, autor, { headers });
   }
 
   updateAutor(id: number, autor: Autor): Observable<Autor> {
-    return this.http.put<Autor>(`${this.apiUrl}/${id}`, autor);
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.put<Autor>(`${this.apiUrl}/${id}`, autor, { headers });
   }
 
   deleteAutor(id: number): Observable<void> {

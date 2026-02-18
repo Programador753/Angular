@@ -1,1 +1,37 @@
-<p>autor-formulario works!</p>
+<div class="container">
+    <h4 align="center">{{ editar ? 'Editar Autor' : 'Añadir Autor' }}</h4>
+    <form (ngSubmit)="onSubmit()">
+        
+        <div class="form-group mb-1">
+            <label for="nom_autor" class="form-label">Nombre:</label>
+            <input type="text" id="nom_autor" name="nom_autor" class="form-control" required [(ngModel)]="autor.nom_autor">
+        </div>
+        
+        <div class="form-group mb-1">
+            <label for="apellido1" class="form-label">Primer Apellido:</label>
+            <input type="text" id="apellido1" name="apellido1" class="form-control" required [(ngModel)]="autor.apellido1">
+        </div>
+
+        <div class="form-group mb-1">
+            <label for="apellido2" class="form-label">Segundo Apellido:</label>
+            <input type="text" id="apellido2" name="apellido2" class="form-control" [(ngModel)]="autor.apellido2">
+        </div>
+
+        <div class="mb-3">
+            <app-selector 
+                [label]="'País:'" 
+                [options]="paisesOptions" 
+                [defaultOption]="autor.paisId" 
+                (selectedValueChange)="autor.paisId = $event">
+            </app-selector>
+        </div>
+
+        <app-boton 
+            [buttonClasses]="'btn btn-primary btn-sm w-100'" 
+            [iconClasses]="editar ? 'fa fa-edit' : 'fa fa-save'" 
+            type="submit">
+            {{ editar ? 'Actualizar' : 'Guardar' }}
+        </app-boton>
+
+    </form>
+</div>

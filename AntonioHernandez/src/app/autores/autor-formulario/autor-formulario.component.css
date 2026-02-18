@@ -1,0 +1,97 @@
+/* Contenedor principal tipo Tarjeta */
+.container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2.5rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f0f0f0;
+}
+
+/* Título del formulario */
+h4 {
+  color: #2c3e50;
+  margin-bottom: 1.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 10px;
+}
+
+/* Etiquetas de los campos */
+.form-label {
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 0.4rem;
+  display: block;
+  font-size: 0.95rem;
+}
+
+/* Cajas de texto y selectores */
+.form-control {
+  border: 1.5px solid #ced4da;
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  color: #333;
+  background-color: #f8f9fa;
+  transition: all 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Efecto al hacer clic en un input */
+.form-control:focus {
+  background-color: #ffffff;
+  border-color: #3f51b5;
+  box-shadow: 0 0 0 4px rgba(63, 81, 181, 0.15);
+  outline: none;
+}
+
+/* Separación entre campos */
+.form-group {
+  margin-bottom: 1.5rem !important;
+}
+
+/* Forzar estilos al selector y botón personalizados usando ::ng-deep 
+   (para atravesar el encapsulamiento de Angular) */
+::ng-deep app-selector select {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  border: 1.5px solid #ced4da;
+  background-color: #f8f9fa;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+::ng-deep app-selector select:focus {
+  background-color: #ffffff;
+  border-color: #3f51b5;
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(63, 81, 181, 0.15);
+}
+
+::ng-deep app-boton button {
+  padding: 0.8rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  background-color: #3f51b5;
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(63, 81, 181, 0.2);
+}
+
+::ng-deep app-boton button:hover {
+  background-color: #303f9f;
+  box-shadow: 0 6px 12px rgba(63, 81, 181, 0.3);
+  cursor: pointer;
+}
+
+::ng-deep app-boton button:active {
+  transform: scale(0.97);
+}
