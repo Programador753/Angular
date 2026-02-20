@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Autor } from './autor';
+import { AutorConAnio } from './autoresporpremio/autoresporpremio.component';
 
 @Injectable({
   providedIn: 'root'
@@ -32,4 +33,9 @@ export class AutoresService {
   deleteAutor(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+
+  getAutoresPorPremio(premioId: number): Observable<AutorConAnio[]> {
+  // Ajusta la URL a la que corresponda en tu API de .NET
+  return this.http.get<AutorConAnio[]>(`https://localhost:7195/api/Autor/autores-por-premio/${premioId}`);
+}
 }

@@ -1,0 +1,25 @@
+/* Estilo para que la tabla se vea igual que en Proyecto25 */
+.table thead th {
+    background-color: #212529;
+    border-bottom: 2px solid #dee2e6;
+    font-size: 0.9rem;
+    padding: 12px;
+}
+
+.table tbody td {
+    padding: 12px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+/* Efecto hover en las imágenes de portada */
+img:hover {
+    transform: scale(1.1);
+    transition: 0.3s;
+    cursor: zoom-in;
+}
+
+/* Ajustes para el panel de búsqueda */
+.card-header h4 {
+    font-size: 1.2rem;
+    font-weight: 500;
+}

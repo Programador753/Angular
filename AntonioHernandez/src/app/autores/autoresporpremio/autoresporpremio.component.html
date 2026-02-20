@@ -1,0 +1,65 @@
+<div class="container mt-4">
+    <div class="card border-primary mb-4 shadow-sm">
+        <div class="card-header bg-primary text-white d-flex align-items-center">
+            <i class="bi bi-trophy me-2"></i>
+            <h4 class="mb-0">Consulta de Autores por Premio</h4>
+        </div>
+        <div class="card-body bg-light">
+            <div class="row">
+                <div class="col-md-12">
+                    <app-selector 
+                        [label]="'Seleccione un galardón de la lista:'" 
+                        [options]="opcionesPremios"
+                        (selectedValueChange)="onPremioSeleccionado($event)">
+                    </app-selector>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="cargando" class="text-center p-5">
+        <div class="spinner-border text-primary" role="status"></div>
+        <p class="mt-2 text-primary fw-bold">Buscando autores galardonados...</p>
+    </div>
+
+    <div *ngIf="!cargando && autoresPremiados.length > 0" class="table-responsive shadow-sm rounded">
+        <table class="table table-striped table-hover align-middle mb-0">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th style="width: 80px;">Foto</th>
+                    <th>Nombre del Autor</th>
+                    <th>Localidad</th>
+                    <th class="text-center">Año del Galardón</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of autoresPremiados">
+                    <td class="text-center">
+                        <img *ngIf="item.autor.foto" src="imagenes/{{ item.autor.foto }}"
+                             class="rounded shadow-sm border" 
+                             alt="Foto de autor"
+                             style="height: 60px; width: 60px; object-fit: cover;">
+                        <i *ngIf="!item.autor.foto" class="bi bi-person-circle fs-1 text-secondary"></i>
+                    </td>
+                    <td>
+                        <span class="fw-bold text-dark">
+                            {{ item.autor.nom_autor }} {{ item.autor.apellido1 }} {{ item.autor.apellido2 }}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="text-muted">{{ item.autor.localidad || 'Desconocida' }}</span>
+                    </td>
+                    <td class="text-center">
+                        <span class="badge bg-success fs-6 p-2 shadow-sm">
+                            <i class="bi bi-calendar-event me-1"></i> {{ item.anio }}
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="!cargando && autoresPremiados.length === 0" class="alert alert-info border-0 shadow-sm text-center">
+        <i class="bi bi-info-circle-fill"></i> Seleccione un premio para visualizar los autores que lo han ganado.
+    </div>
+</div>

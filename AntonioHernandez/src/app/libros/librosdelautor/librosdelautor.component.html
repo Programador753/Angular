@@ -1,1 +1,71 @@
-<p>librosdelautor works!</p>
+<div class="container mt-4">
+    <div class="card border-primary mb-4 shadow-sm">
+        <div class="card-header bg-primary text-white d-flex align-items-center">
+            <i class="bi bi-search me-2"></i>
+            <h4 class="mb-0">Consulta de Libros por Autor</h4>
+        </div>
+        <div class="card-body bg-light">
+            <div class="row">
+                <div class="col-md-12">
+                    <app-selector 
+                        [label]="'Seleccione un autor de la base de datos:'" 
+                        [options]="opcionesAutores"
+                        (selectedValueChange)="onAutorSeleccionado($event)">
+                    </app-selector>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="cargando" class="text-center p-5">
+        <div class="spinner-border text-primary" role="status"></div>
+        <p class="mt-2 text-primary fw-bold">Accediendo a la biblioteca...</p>
+    </div>
+
+    <div *ngIf="!cargando && libros.length > 0" class="table-responsive shadow-sm rounded">
+        <table class="table table-striped table-hover align-middle mb-0">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th style="width: 80px;">Portada</th>
+                    <th>Título</th>
+                    <th>Año</th>
+                    <th>Sinopsis / Comentarios</th>
+                    <th style="width: 150px;">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let libro of libros">
+                    <td class="text-center">
+                        <img src="portadas/{{ libro.portada }}" 
+                             class="rounded shadow-sm border" 
+                             [alt]="libro.nom_libro"
+                             style="height: 70px; width: 50px; object-fit: cover;">
+                    </td>
+                    <td>
+                        <span class="fw-bold text-dark">{{ libro.nom_libro }}</span>
+                    </td>
+                    <td class="text-center">
+                        <span class="badge bg-secondary">{{ libro.ano }}</span>
+                    </td>
+                    <td>
+                        <small class="text-muted text-wrap" style="max-width: 400px; display: block;">
+                            {{ libro.comentario || 'Sin descripción' }}
+                        </small>
+                    </td>
+                    <td class="text-center">
+                        <button class="btn btn-primary btn-sm me-1 shadow-sm">
+                            <i class="bi bi-pencil-square"></i> Editar
+                        </button>
+                        <button class="btn btn-danger btn-sm shadow-sm">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="!cargando && libros.length === 0" class="alert alert-info border-0 shadow-sm text-center">
+        <i class="bi bi-info-circle-fill"></i> Seleccione un autor para visualizar sus obras publicadas.
+    </div>
+</div>
