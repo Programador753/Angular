@@ -34,7 +34,7 @@ export class AutoresporpremioComponent implements OnInit {
 
   ngOnInit(): void {
     // 1. Cargar la lista de premios para llenar el selector
-    this.premiosService.getPremios().subscribe(premios => {
+    this.premiosService.getPremiosTipoAutor().subscribe(premios => {
       this.opcionesPremios = premios.map(p => ({
         // Usamos ! para decirle a TypeScript que estamos seguros de que id existe
         value: p.id!, 
