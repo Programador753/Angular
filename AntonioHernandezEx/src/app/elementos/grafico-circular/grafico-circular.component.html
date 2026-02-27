@@ -1,0 +1,36 @@
+<div class="chart-wrapper">
+  
+  <div class="svg-container">
+    <svg viewBox="-1 -1 2 2" class="pie-chart">
+      <ng-container *ngFor="let slice of slices">
+        
+        <path *ngIf="!slice.isCircle"
+              [attr.d]="slice.path"
+              [attr.fill]="slice.color"
+              stroke="white"
+              stroke-width="0.02"
+              class="slice">
+            <title>{{slice.label}}: {{slice.value}}</title>
+        </path>
+
+        <circle *ngIf="slice.isCircle"
+                cx="0" cy="0" r="1"
+                [attr.fill]="slice.color">
+            <title>{{slice.label}}: {{slice.value}}</title>
+        </circle>
+
+      </ng-container>
+    </svg>
+  </div>
+
+  <div class="legend">
+    <div *ngFor="let slice of slices" class="legend-item">
+      <span class="dot" [style.background-color]="slice.color"></span>
+      <div class="legend-text">
+        <span class="label">{{ slice.label }}</span>
+        <span class="value">{{ slice.value }} ({{slice.percent}})</span>
+      </div>
+    </div>
+  </div>
+
+</div>

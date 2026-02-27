@@ -1,0 +1,19 @@
+<article class="tarjeta">
+  <div class="tarjeta-imagen">
+    <img [src]="imagenPortada" [alt]="noticia.titulo" loading="lazy" />
+  </div>
+  <div class="tarjeta-contenido">
+    <h2 class="tarjeta-titulo">{{ noticia.titulo }}</h2>
+    <p class="tarjeta-fuente">
+      <span class="etiqueta">Fuente:</span> {{ noticia.fuente || 'Desconocida' }}
+    </p>
+    <p class="tarjeta-fecha">
+      <span class="etiqueta">Publicación:</span>
+      {{ noticia.fechaPublicacion ? (noticia.fechaPublicacion | date:'dd/MM/yyyy') : 'Sin fecha' }}
+    </p>
+    <p class="tarjeta-descripcion">{{ noticia.descripcion }}</p>
+    <a *ngIf="noticia.enlace" [href]="noticia.enlace" target="_blank" class="btn-enlace">
+      Leer noticia completa →
+    </a>
+  </div>
+</article>

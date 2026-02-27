@@ -1,0 +1,37 @@
+<section class="noticias-contenedor">
+  <h1 class="titulo-seccion">Listado de Noticias</h1>
+
+  <!-- Selector de categorías (padre) → filtra noticias pasadas a tarjeta-noticia (hijo) -->
+  <div class="mb-4">
+    <app-selector
+      label="Filtrar por categoría:"
+      [options]="categorias"
+      [defaultOption]="0"
+      (selectedValueChange)="onCategoriaChange($event)">
+    </app-selector>
+  </div>
+
+  <!-- Estado de carga -->
+  <div *ngIf="cargando" class="estado-mensaje cargando">
+    <span class="spinner-border spinner-border-sm text-primary" role="status"></span>
+    Cargando noticias...
+  </div>
+
+  <!-- Error -->
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+
+  <!-- Sin resultados -->
+  <div *ngIf="!cargando && !error && noticiasFiltradas.length === 0" class="alert alert-info">
+    No hay noticias para la categoría seleccionada.
+  </div>
+
+  <!-- Grid de tarjetas: padre (lista-noticias) pasa [noticia] al hijo (tarjeta-noticia) -->
+  <div class="grid-noticias" *ngIf="!cargando && !error && noticiasFiltradas.length > 0">
+    <app-tarjeta-noticia
+      *ngFor="let noticia of noticiasFiltradas"
+      [noticia]="noticia">
+    </app-tarjeta-noticia>
+  </div>
+</section>

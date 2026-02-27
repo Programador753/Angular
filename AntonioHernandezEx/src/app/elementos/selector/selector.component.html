@@ -1,0 +1,8 @@
+<div class="form-group">
+    <label *ngIf="label">{{ label }}</label>
+    <select class="form-select" [(ngModel)]="selectedValue" (change)="onSelectionChange()">
+        <option *ngFor="let option of options" [value]="option.value" [selected]="option.value == defaultOption">
+            {{ option.text }}
+        </option>
+    </select>
+</div>
