@@ -1,0 +1,12 @@
+<div>
+  <button (click)="alternarVisibilidad()">
+    {{ visibles ? 'Ocultar' : 'Mostrar' }} datos
+  </button>
+
+  <div *ngIf="visibles">
+    <p><strong>Nombre:</strong> {{ nombre }}</p>
+    <p><strong>Apellidos:</strong> {{ apellido1 }} {{ apellido2 }}</p>
+    <p><strong>Localidad:</strong> {{ localidad }}</p>
+    <p><strong>Fecha de nacimiento:</strong> {{ f_nac }}</p>
+  </div>
+</div>

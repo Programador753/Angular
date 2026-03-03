@@ -1,0 +1,12 @@
+<div>
+  <span>Mostrar: </span>
+
+  <input type="radio" name="opciones" value="todos" [(ngModel)]="opcionElegida" (change)="cuandoCambiaOpcion()">
+  <label>Todos ({{todos}})</label>
+
+  <input type="radio" name="opciones" value="vivos" [(ngModel)]="opcionElegida" (change)="cuandoCambiaOpcion()">
+  <label>Vivos ({{vivos}})</label>
+
+  <input type="radio" name="opciones" value="fallecidos" [(ngModel)]="opcionElegida" (change)="cuandoCambiaOpcion()">
+  <label>Fallecidos ({{fallecidos}})</label>
+</div>

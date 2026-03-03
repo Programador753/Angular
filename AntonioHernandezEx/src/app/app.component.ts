@@ -7,10 +7,9 @@ import { MenuComponent } from './elementos/menu/menu.component';
   imports: [RouterOutlet, MenuComponent],
   template: `
   <app-menu
-    [title]="'Portal de Noticias'"
+    [title]="'Examen'"
     [menuItems]="[
       {label: 'Inicio', link: '/', icono: 'fa fa-home'},
-      {label: 'Noticias', link: '/noticias', icono: 'fa fa-newspaper'}
     ]">
   </app-menu>
 

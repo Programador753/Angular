@@ -36,8 +36,8 @@ import { GraficoCircularComponent } from './elementos/grafico-circular/grafico-c
       {label: 'Inicio', link: '/', icono: 'bi bi-house'},
       {label: 'Libros por Autor', link: '/libros-por-autor', icono: 'bi bi-book'},
       {label: 'Autores por Premio', link: '/autores-por-premio', icono: 'bi bi-trophy'},
-      {label: 'Insertar Autor', link: '/autor-insertar', icono: 'bi bi-person-plus'}
-      
+      {label: 'Insertar Autor', link: '/autor-insertar', icono: 'bi bi-person-plus'},
+      {label: 'Listado Autores ', link: '/autores-listado2', icono: 'bi bi-list'}
     ]">
   </app-menu>
   

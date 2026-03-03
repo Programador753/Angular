@@ -18,7 +18,7 @@ import { Pais } from '../../paises/pais';
   styleUrl: './autor-formulario.component.css',
 })
 export class AutorFormularioComponent implements OnInit {
-  autor: Autor = new Autor(); 
+  autor: Autor = new Autor(0, '', '', '', '', '', 0, null as any, '', '', '', [], []);
   editar: boolean = false;
   
   // Array formateado para tu componente app-selector
@@ -74,10 +74,7 @@ export class AutorFormularioComponent implements OnInit {
         alert('¡Autor insertado correctamente!'); 
         
         // 2. Reiniciamos el formulario limpiando el objeto
-        this.autor = new Autor(); 
-
-        // NOTA: Hemos quitado el this.router.navigate para que NO te cambie de página 
-        // y puedas insertar otro autor inmediatamente.
+        this.autor = new Autor(0, '', '', '', '', '', 0, null as any, '', '', '', [], []);
       });
     }
   }

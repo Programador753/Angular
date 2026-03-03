@@ -1,23 +1,13 @@
 export class Libro {
-    id: number;
-    nom_libro: string;
-    ano: number;
-    portada: string;
-    nom_archivo: string;
-    pelicula: string;
-    comentario: string;
-    serieId: number;
-    indice_serie: number;
-
-    constructor() {
-        this.id = 0;
-        this.nom_libro = '';
-        this.ano = 0;
-        this.portada = '';
-        this.nom_archivo = '';
-        this.pelicula = '';
-        this.comentario = '';
-        this.serieId = 0;
-        this.indice_serie = 0;
-    }
+    constructor(
+        public id: number,
+        public nom_libro: string,
+        public ano: number,
+        public portada: string,
+        public nom_archivo: string,
+        public pelicula: string,
+        public comentario: string,
+        public serieId: number,
+        public indice_serie: number
+    ) {}
 }

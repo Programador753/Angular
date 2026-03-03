@@ -1,0 +1,52 @@
+<div class="container mt-5">
+  <h2>Listado de Autores</h2>
+
+  <app-selector
+    [options]="opcionesSelector"
+    label="Filtrar por país:"
+    [defaultOption]="opcionSeleccionada"
+    (selectedValueChange)="onFiltroChange($event)">
+  </app-selector>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Apellidos</th>
+      <th>F. Nacimiento</th>
+      <th>F. Defunción</th>
+      <th>País</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let autor of autores">
+      <tr>
+        <td>{{ autor.nom_autor | uppercase | autorTitulo:esFallecido(autor) }}</td>
+        <td>{{ autor.apellido1 }} {{ autor.apellido2 }}</td>
+        <td>{{ autor.f_nac | date:'dd/MM/yyyy' }}</td>
+        <td>{{ autor.f_def ? (autor.f_def | date:'dd/MM/yyyy') : '-' }}</td>
+        <td>{{ getNombrePais(autor.paisId) }}</td>
+        <td>
+          <app-boton
+            iconClasses="fa-solid fa-edit"
+            buttonClasses="btn-warning"
+            [routerLink]="['/autor-insertar', autor.id]">Editar
+          </app-boton>
+        </td>
+        <td>
+          <app-boton
+            iconClasses="fa-solid fa-trash"
+            buttonClasses="btn-danger"
+            (click)="eliminarAutor(autor.id)">Eliminar
+          </app-boton>
+        </td>
+      </tr>
+    </ng-container>
+    <tr *ngIf="!autores || autores.length === 0">
+      <td colspan="7" align="center">No hay autores disponibles</td>
+    </tr>
+  </tbody>
+</table>

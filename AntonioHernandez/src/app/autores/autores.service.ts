@@ -8,7 +8,8 @@ import { AutorConAnio } from './autoresporpremio/autoresporpremio.component';
   providedIn: 'root'
 })
 export class AutoresService {
-  private apiUrl = 'https://localhost:7195/api/Autor'; // Verifica si tu backend usa /autores o /autor
+  private apiUrl = 'https://localhost:7195/api/Autor';
+  private apiUrlByPais = 'https://localhost:7195/api/Autor/porPais';
 
   constructor(private readonly http: HttpClient) {}
 
@@ -34,8 +35,11 @@ export class AutoresService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
+  getAutoresByPais(id: number): Observable<Autor[]> {
+    return this.http.get<Autor[]>(`${this.apiUrlByPais}/${id}`);
+  }
+
   getAutoresPorPremio(premioId: number): Observable<AutorConAnio[]> {
-  // Ajusta la URL a la que corresponda en tu API de .NET
-  return this.http.get<AutorConAnio[]>(`https://localhost:7195/api/Autor/autores-por-premio/${premioId}`);
-}
+    return this.http.get<AutorConAnio[]>(`https://localhost:7195/api/Autor/autores-por-premio/${premioId}`);
+  }
 }

@@ -1,14 +1,11 @@
-import { Pais } from '../paises/pais'; // Ajusta la ruta si 'pais.ts' está en otra carpeta
+import { Pais } from '../paises/pais';
 
 export class Premio {
-  id?: number;
-  nom_premio?: string;
-  paisId?: number;
-  pais?: Pais;
-  tipo?: string;
-
-  // Constructor que permite inicializar la clase con un objeto parcial
-  constructor(init?: Partial<Premio>) {
-    Object.assign(this, init);
-  }
+    constructor(
+        public id: number,
+        public nom_premio: string,
+        public paisId: number,
+        public pais: Pais,
+        public tipo: string
+    ) {}
 }

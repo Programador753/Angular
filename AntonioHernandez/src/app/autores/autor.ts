@@ -1,21 +1,19 @@
 import { Pais } from '../paises/pais';
 
 export class Autor {
-  id?: number;
-  nom_autor?: string;
-  apellido1?: string;
-  apellido2?: string;
-  f_nac?: string | Date;
-  f_def?: string | Date;
-  paisId?: number;
-  pais?: Pais;
-  foto?: string;
-  biografia?: string;
-  localidad?: string;
-  autorPremios?: any[];
-  autorLibros?: any[];
-
-  constructor(init?: Partial<Autor>) {
-    Object.assign(this, init);
-  }
+    constructor(
+        public id: number,
+        public nom_autor: string,
+        public apellido1: string,
+        public apellido2: string,
+        public f_nac: string | Date,
+        public f_def: string | Date,
+        public paisId: number,
+        public pais: Pais,
+        public foto: string,
+        public biografia: string,
+        public localidad: string,
+        public autorPremios: any[],
+        public autorLibros: any[]
+    ) {}
 }

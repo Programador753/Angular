@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -8,14 +8,22 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './selector.component.html',
   styleUrl: './selector.component.css'
 })
-export class SelectorComponent {
+export class SelectorComponent implements OnChanges {
   @Input() defaultOption: any;
   @Input() options: { value: any; text: string }[] = [];
   @Input() label: string | null = null;
-  selectedValue: any = null;
   @Output() selectedValueChange = new EventEmitter<any>();
 
-  onSelectionChange(): void {
-    this.selectedValueChange.emit(this.selectedValue);
+  selectedValue: any = null;
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['defaultOption']) {
+      this.selectedValue = this.defaultOption;
+    }
+  }
+
+  onSelectionChange(value: any): void {
+    this.selectedValue = value;
+    this.selectedValueChange.emit(value);
   }
 }
