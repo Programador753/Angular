@@ -1,0 +1,101 @@
+<div class="container mt-4">
+
+  <!-- PREGUNTA 1: Platos por Categoría  -->
+  <div *ngIf="preguntaActual === 1">
+    <h2>Pregunta 1 - Platos por Categoría</h2>
+
+    <app-selector
+      label="Selecciona una categoría:"
+      [options]="categorias"
+      (selectedValueChange)="onCategoriaChange($event)">
+    </app-selector>
+
+    <div *ngIf="platos.length > 0" class="mt-4">
+      <h4>Platos de la categoría: {{ categoriaSeleccionada }}</h4>
+      <div class="row">
+        <div class="col-md-3 col-sm-6 mb-3" *ngFor="let plato of platos">
+          <div class="card h-100">
+            <img [src]="plato.thumbnailUrl" class="card-img-top" [alt]="plato.name">
+            <div class="card-body">
+              <h5 class="card-title">{{ plato.name }}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PREGUNTA 2: Ingredientes de un Plato -->
+  <div *ngIf="preguntaActual === 2">
+    <h2>Pregunta 2 - Ingredientes por Plato</h2>
+
+    <app-selector
+      label="Selecciona un plato:"
+      [options]="platosOptions"
+      (selectedValueChange)="onPlatoChange($event)">
+    </app-selector>
+
+    <div *ngIf="platoIngredientes.length > 0" class="mt-4">
+      <h4>Ingredientes de: {{ platoSeleccionado }}</h4>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Ingrediente</th>
+            <th>Medida (Measure)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let platoIngrediente of platoIngredientes">
+            <td>{{ getNombreIngrediente(platoIngrediente.idIngredient) }}</td>
+            <td>{{ platoIngrediente.measure }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- PREGUNTA 3: Formulario de insercion  -->
+  <div *ngIf="preguntaActual === 3">
+    <h2>Pregunta 3 - Formulario de Inserción</h2>
+
+    <div class="form-group mb-3">
+      <label for="nombre" class="form-label">Nombre del plato:</label>
+      <input type="text" id="nombre" name="nombre" class="form-control" [(ngModel)]="nuevoPlato.name">
+    </div>
+
+    <div class="mb-3">
+      <app-selector
+        label="Categoría:"
+        [options]="categoriasOptions"
+        (selectedValueChange)="onCategoriaFormChange($event)">
+      </app-selector>
+    </div>
+
+    <div class="mb-3">
+      <app-selector
+        label="Área:"
+        [options]="areasOptions"
+        (selectedValueChange)="onAreaChange($event)">
+      </app-selector>
+    </div>
+
+    <div class="mb-3">
+      <label for="ingredientes" class="form-label">Ingredientes:</label>
+      <select
+        id="ingredientes"
+        class="form-select"
+        multiple
+        [size]="8"
+        [ngModel]="nuevoPlato.ingredientsSeleccionados"
+        (ngModelChange)="onIngredientesChange($event)">
+        <option *ngFor="let ing of ingredientesOptions" [ngValue]="ing.value">
+          {{ ing.text }}
+        </option>
+      </select>
+      <small class="text-muted">Mantén Ctrl para seleccionar varios ingredientes</small>
+    </div>
+
+    <button class="btn btn-primary w-100" (click)="guardar()">Guardar</button>
+  </div>
+
+</div>
